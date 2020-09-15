@@ -45,9 +45,12 @@ s3:
   region: us-east1
   kmsMasterKey: minio-demo-key:6368616e676520746869732070617373776f726420746f206120736563726574
   usePathStyle: true
-  e2e:
-    minio: true
+#  e2e:
+#    minio: false
 ca:
   cert: .certs/root-ca.crt
   privateKey: .certs/root-ca.key
   password: foobar
+
+platformOperator:
+  version: v0.4.6
