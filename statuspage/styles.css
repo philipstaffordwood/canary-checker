@@ -56,13 +56,27 @@ div.check-status {
     height: 0.8em;
     width: 1rem;
     margin: 0.4rem 0.2rem;
-    border-radius: 0.15rem;
+    #border-radius: 0.15rem;
+    border-radius: 0.4rem;
 }
 
 div.check-status.check-status-pass {
     background-color: #28a745;
 }
 div.check-status.check-status-fail {
+    background-color:#dc3545;
+}
+div.check-status-circle{
+    height: 2rem;
+    width: 2rem;
+    background-color: #28a745;
+    border-radius: 50%;
+    display: inline-block;
+}
+div.check-status-circle.check-status-pass {
+    background-color: #28a745;
+}
+div.check-status-circle.check-status-fail {
     background-color:#dc3545;
 }
 

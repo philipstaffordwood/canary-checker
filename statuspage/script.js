@@ -101,7 +101,7 @@ Vue.component('check-tds', {
     <transition-group name="slide" tag="section" class="check-section" :style="{width: 1.4 * check.checkStatuses[this.server].length + 'rem'}" mode="out-in">
       <div v-for="checkStatus in check.checkStatuses[this.server]" :key="checkStatus.key" class="check-status-container">
         <check-status 
-            :checkStatus="checkStatus" 
+            :checkStatus="check-status-circle" 
             :health="check.health[server]"
             @triggerCheck="triggerCheck"
             ></check-status>
