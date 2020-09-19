@@ -58,6 +58,37 @@ spec:
         spec:
           description: CanarySpec defines the desired state of Canary
           properties:
+            containerdPull:
+              items:
+                properties:
+                  description:
+                    type: string
+                  expectedDigest:
+                    type: string
+                  expectedSize:
+                    format: int64
+                    type: integer
+                  image:
+                    type: string
+                  password:
+                    type: string
+                  username:
+                    type: string
+                type: object
+              type: array
+            containerdPush:
+              items:
+                properties:
+                  description:
+                    type: string
+                  image:
+                    type: string
+                  password:
+                    type: string
+                  username:
+                    type: string
+                type: object
+              type: array
             dns:
               items:
                 properties:
@@ -77,9 +108,9 @@ spec:
                     type: string
                   server:
                     type: string
-                  timeout:
-                    type: integer
                   thresholdMillis:
+                    type: integer
+                  timeout:
                     type: integer
                 type: object
               type: array

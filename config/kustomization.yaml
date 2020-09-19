@@ -1,8 +1,12 @@
 namespace: canary-checker-system
 namePrefix: canary-checker-
 resources:
-  - ./rbac.yaml
-  - ./crd.yaml
-  - ./manager.yaml
+- ./rbac.yaml
+- ./crd.yaml
+- ./manager.yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+images:
+- name: controller
+  newName: philipstaffordwood/canary-checker
+  newTag: v0.12.0-0-gf629cde

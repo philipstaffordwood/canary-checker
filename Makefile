@@ -1,15 +1,10 @@
 
 # Image URL to use all building/pushing image targets
-IMG ?= flanksource/canary-checker:$(TAG)
+IMG ?= philipstaffordwood/canary-checker:$(TAG)
 # Produce CRDs that work back to Kubernetes 1.11 (no version conversion)
 CRD_OPTIONS ?= ""
 NAME=canary-checker
-
-TAG=$(shell git describe --tags  --long)$(shell date +"%H%M%S")
-
-ifeq ($(VERSION),)
-VERSION=$(shell git describe --tags  --long)-$(shell date +"%Y%m%d%H%M%S")
-endif
+TAG=$(shell git describe --tags  --long)
 
 # Get the currently used golang install path (in GOPATH/bin, unless GOBIN is set)
 ifeq (,$(shell go env GOBIN))
@@ -38,7 +33,7 @@ install-crd: manifests
 
 
 kind-install: docker-build
-	kind load docker-image --name=kind-kind ${IMG}
+	kind load docker-image --name=test ${IMG}
 
 # Uninstall CRDs from a cluster
 uninstall: manifests
@@ -94,7 +89,7 @@ serve-docs:
 
 .PHONY: build-api-docs
 build-api-docs:
-	go run main.go docs api  api/v1/checks.go  > docs/reference.md
+	go run main.go docs api  pkg/api.go  > docs/reference.md
 	mkdir -p docs/cli
 	go run main.go docs cli "docs/cli"
 
