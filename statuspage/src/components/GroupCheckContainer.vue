@@ -1,17 +1,19 @@
 <template>
-    <table class="table table-sm table-fixed text-nowrap" id="checks" v-cloak>
-        <thead>
-        <tr>
-        <th class="border-right">Type</th>
-        <th class="border-right">NS/Name</th>
-        <th class="border-right">Description</th>
-        <th :key="server" class="border-right" v-for="(server, serverName) in serversByNames">{{ serverName }}</th>
-        </tr>
-        </thead>
+<!--    <table class="table table-sm table-fixed text-nowrap" id="checks" v-cloak>-->
+    <div v-cloak class="Table table-sm table-fixed text-nowrap" id="checks">
+        <div class="TableHeader">
+            <tr>
+            <th class="border-right">Type</th>
+            <th class="border-right">NS/Name</th>
+            <th class="border-right">Description</th>
+            <th :key="server" class="border-right" v-for="(server, serverName) in serversByNames">{{ serverName }}</th>
+            </tr>
+        </div>
         <template v-for="(typed, name) in groupedChecks">
             <group-check :typed="typed" :name="name" :key="name"/>
         </template>
-    </table>
+<!--    </table>-->
+    </div>
 </template>
 
 <script>
@@ -36,16 +38,7 @@
         computed: {
             ...Vuex.mapState(['error', 'servers', 'lastRefreshed', 'checks', 'disableReload']),
             ...Vuex.mapGetters(['serversByNames', 'groupedChecks']),
-            shortHand() {
-                return (txt, limit) => {
-                    return txt.slice(0, limit) + (txt.length > limit ? "..." : "");
-                }
-            },
-            calcTooltipId() {
-                return (mergedDesc, name, type) => {
-                    return window.btoa(mergedDesc + name + type)
-                }
-            },
+
         },
         methods: {
             async triggerMerged(checks, event) {
@@ -61,5 +54,14 @@
 </script>
 
 <style scoped>
+    .Table
+    {
+        display: table;
+    }
+    .TableHeader
+    {
+        display: table-header-group;
+    }
+
 
 </style>
